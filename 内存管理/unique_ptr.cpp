@@ -8,6 +8,12 @@ private:
     std::unique_ptr<int> m_data;
 };
 
+int* malloc_int(int value) {
+    int* p = (int*)malloc(sizeof(int));
+    *p = value;
+    return p;
+}
+
 int main() {
 
     //可以使用两种方式来初始化一个unique_ptr智能指针对象
@@ -29,5 +35,8 @@ int main() {
 
     auto smartPointer = std::make_unique<int>(42);
     Foo f(std::move(smartPointer));
+
+    //自定义删除器
+    std::unique_ptr<int, decltype(free)*>mySmartPointer(malloc_int(42), free);
     return 0;
 }

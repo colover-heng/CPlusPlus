@@ -46,5 +46,6 @@ int main() {
 
     // WrongDoubleDelete();
     RightDoubleDelete();
+    
     return 0;
 }
